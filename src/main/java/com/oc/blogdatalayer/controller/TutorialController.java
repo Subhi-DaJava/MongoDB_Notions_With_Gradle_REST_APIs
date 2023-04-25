@@ -53,4 +53,14 @@ public class TutorialController {
             throw new PostNotFoundException("No Tutorial with this id: {%s}".formatted(id));
         }
     }
+
+    @GetMapping("/tutorial-by-name/{tutorialName}")
+    Tutorial getTutorialByName(@PathVariable String tutorialName) {
+        return tutorialRepository.findByName(tutorialName);
+    }
+
+    @GetMapping("/tutos-by-short-desc-contain/{givenWord}")
+    List<Tutorial> getTutosByShortDescContainingWithGivenWord(@PathVariable String givenWord) {
+        return tutorialRepository.findByShortDescriptionContaining(givenWord);
+    }
 }

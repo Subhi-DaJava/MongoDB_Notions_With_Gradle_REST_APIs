@@ -30,11 +30,12 @@ public class PostController {
     public List<Post> getAllPosts() {
         return postRepository.findAll();
     }
+
     @GetMapping(value = "/content/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getContentById(@PathVariable String id) {
         Optional<Post> post = postRepository.findById(id);
 
-        if(post.isPresent()) {
+        if (post.isPresent()) {
             logger.info("Content: " + post.get().getContent());
             return post.get().getContent();
         } else {
@@ -47,15 +48,19 @@ public class PostController {
     public Post getPostById(@PathVariable String id) {
         Optional<Post> post = postRepository.findById(id);
 
-        if(post.isPresent()) {
+        if (post.isPresent()) {
             return post.get();
         } else {
             throw new PostNotFoundException("No post with this id: {%s}".formatted(id));
         }
     }
-    @GetMapping("/posts-by-name/{postName}")
-    List<Post> getPostsByName(@PathVariable String postName) {
+
+    @GetMapping("/post-by-name/{postName}")
+    Post getPostsByName(@PathVariable String postName) {
         return postRepository.findByName(postName);
     }
-
+    @GetMapping("/contain/{givenWord}")
+    List<Post> findByContentContainingWithGivenWord(@PathVariable String givenWord) {
+        return postRepository.findByContentContaining(givenWord);
+    }
 }
