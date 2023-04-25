@@ -2,6 +2,7 @@ package com.oc.blogdatalayer.controller;
 
 import com.oc.blogdatalayer.BlogDataLayerApplication;
 import com.oc.blogdatalayer.exception.PostNotFoundException;
+import com.oc.blogdatalayer.model.LightPost;
 import com.oc.blogdatalayer.model.Post;
 import com.oc.blogdatalayer.repository.PostRepository;
 import org.slf4j.Logger;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -59,8 +62,23 @@ public class PostController {
     Post getPostsByName(@PathVariable String postName) {
         return postRepository.findByName(postName);
     }
+
     @GetMapping("/contain/{givenWord}")
     List<Post> findByContentContainingWithGivenWord(@PathVariable String givenWord) {
         return postRepository.findByContentContaining(givenWord);
+    }
+
+    @GetMapping("/posts-by-name-with-date-desc")
+    List<String> getPostNameByOrderByDateDesc() {
+        List<LightPost> postList = postRepository.findByOrderByDateDesc();
+        return postList.stream().map(LightPost::getName).toList();
+    }
+
+    @GetMapping("/posts-by-id-and-name-orderby-date")
+    Map<String, String> findPostByIdAndNameOrderByDate() {
+        List<Post> posts = postRepository.findByIdAndNameExcludeOthers();
+        Map<String, String> postsByIdAndName = new HashMap<>();
+        posts.forEach(post -> postsByIdAndName.put(post.getId(), post.getName()));
+        return postsByIdAndName;
     }
 }

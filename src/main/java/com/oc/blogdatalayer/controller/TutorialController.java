@@ -3,6 +3,7 @@ package com.oc.blogdatalayer.controller;
 import com.oc.blogdatalayer.BlogDataLayerApplication;
 import com.oc.blogdatalayer.exception.PostNotFoundException;
 import com.oc.blogdatalayer.exception.TutorialNotFoundException;
+import com.oc.blogdatalayer.model.NameAndDescriptionTuto;
 import com.oc.blogdatalayer.model.Tutorial;
 import com.oc.blogdatalayer.repository.TutorialRepository;
 import org.slf4j.Logger;
@@ -13,7 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -30,11 +33,12 @@ public class TutorialController {
     public List<Tutorial> getAllTutorials() {
         return tutorialRepository.findAll();
     }
+
     @GetMapping(value = "/content/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public String getContentById(@PathVariable String id) {
         Optional<Tutorial> tutorial = tutorialRepository.findById(id);
 
-        if(tutorial.isPresent()) {
+        if (tutorial.isPresent()) {
             logger.info("Content: " + tutorial.get().getContent());
             return tutorial.get().getContent();
         } else {
@@ -47,7 +51,7 @@ public class TutorialController {
     public Tutorial getPostById(@PathVariable String id) {
         Optional<Tutorial> tutorial = tutorialRepository.findById(id);
 
-        if(tutorial.isPresent()) {
+        if (tutorial.isPresent()) {
             return tutorial.get();
         } else {
             throw new PostNotFoundException("No Tutorial with this id: {%s}".formatted(id));
@@ -62,5 +66,22 @@ public class TutorialController {
     @GetMapping("/tutos-by-short-desc-contain/{givenWord}")
     List<Tutorial> getTutosByShortDescContainingWithGivenWord(@PathVariable String givenWord) {
         return tutorialRepository.findByShortDescriptionContaining(givenWord);
+    }
+
+    @GetMapping("/tutos-by-name-and-description")
+    public List<NameAndDescriptionTuto> getTutosByNameAndDescription() {
+        return tutorialRepository.findByOrderByNameAsc();
+    }
+    @GetMapping("/tutos-by-name-and-description-with-map")
+    public Map<String, String> getTutosByNameAndDescriptioWithMap() {
+        List<NameAndDescriptionTuto> tutos = tutorialRepository.findByOrderByNameAsc();
+        Map<String,String> tutosNameAndShortDescription = new HashMap<>();
+        tutos.forEach(tuto -> tutosNameAndShortDescription.put(tuto.getName(), tuto.getShortDescription()));
+        return tutosNameAndShortDescription;
+    }
+
+    @GetMapping("/tutos-by-id-and-name")
+    public List<Tutorial> findByIdAndName() {
+        return tutorialRepository.findIdAndNameExcludeOthers();
     }
 }
