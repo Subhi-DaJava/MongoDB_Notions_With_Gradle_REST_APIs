@@ -4,6 +4,7 @@ import com.oc.blogdatalayer.BlogDataLayerApplication;
 import com.oc.blogdatalayer.exception.PostNotFoundException;
 import com.oc.blogdatalayer.exception.TutorialNotFoundException;
 import com.oc.blogdatalayer.model.NameAndDescriptionTuto;
+import com.oc.blogdatalayer.model.TutoAggregate;
 import com.oc.blogdatalayer.model.Tutorial;
 import com.oc.blogdatalayer.repository.TutorialRepository;
 import org.slf4j.Logger;
@@ -83,5 +84,15 @@ public class TutorialController {
     @GetMapping("/tutos-by-id-and-name")
     public List<Tutorial> findByIdAndName() {
         return tutorialRepository.findIdAndNameExcludeOthers();
+    }
+
+    @GetMapping("/categories-by-aggregation")
+    public List<String> retrieveAllCategories() {
+        return tutorialRepository.findAllCategories();
+    }
+
+    @GetMapping("/aggregate-names-and-short-description-by-category")
+    List<TutoAggregate> aggregateNamesAndShortDescriptionByCategory() {
+        return tutorialRepository.groupByCategoryAggregateNamesAndShortDescription();
     }
 }

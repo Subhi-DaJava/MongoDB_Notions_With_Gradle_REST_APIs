@@ -4,6 +4,7 @@ import com.oc.blogdatalayer.BlogDataLayerApplication;
 import com.oc.blogdatalayer.exception.PostNotFoundException;
 import com.oc.blogdatalayer.model.LightPost;
 import com.oc.blogdatalayer.model.Post;
+import com.oc.blogdatalayer.model.PostAggregate;
 import com.oc.blogdatalayer.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -80,5 +81,14 @@ public class PostController {
         Map<String, String> postsByIdAndName = new HashMap<>();
         posts.forEach(post -> postsByIdAndName.put(post.getId(), post.getName()));
         return postsByIdAndName;
+    }
+    @GetMapping("/retrieve-all-names-by-aggregation")
+    List<String> retrieveAllNames() {
+        return postRepository.findAllNames();
+    }
+
+    @GetMapping("/group-posts-by-date")
+    List<PostAggregate> groupPostsByDate() {
+        return postRepository.groupPostsByDate();
     }
 }
