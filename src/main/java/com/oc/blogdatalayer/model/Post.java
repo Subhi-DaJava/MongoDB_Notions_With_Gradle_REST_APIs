@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * Each attribute of the class represents one of the characteristics of the document.
  * Note: @Field(“nom”) and @Transient
  */
-@Document(collation = "posts")
+@Document(collection = "posts")
 public class Post {
     @Id
     private String id;
@@ -49,5 +49,14 @@ public class Post {
 
     public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "name='" + name + '\'' +
+                ", content='" + content + '\'' +
+                ", date=" + date +
+                '}';
     }
 }

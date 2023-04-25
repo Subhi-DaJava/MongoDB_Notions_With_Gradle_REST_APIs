@@ -4,6 +4,8 @@ import com.oc.blogdatalayer.model.Post;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * The interface is annotated with @Repository.
  * This annotation indicates that the class is responsible for communicating with a data source,
@@ -11,4 +13,5 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PostRepository extends MongoRepository<Post, String> {
+    List<Post> findByName(String postName);
 }

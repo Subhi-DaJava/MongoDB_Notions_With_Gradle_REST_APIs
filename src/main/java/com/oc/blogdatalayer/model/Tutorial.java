@@ -3,7 +3,7 @@ package com.oc.blogdatalayer.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collation = "tutorials")
+@Document(collection = "tutorials")
 public class Tutorial {
     @Id
     private String id;
@@ -50,5 +50,15 @@ public class Tutorial {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Tutorial{" +
+                "name='" + name + '\'' +
+                ", shortDescription='" + shortDescription + '\'' +
+                ", content='" + content + '\'' +
+                ", category='" + category + '\'' +
+                '}';
     }
 }
