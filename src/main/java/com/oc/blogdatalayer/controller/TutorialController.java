@@ -10,15 +10,12 @@ import com.oc.blogdatalayer.repository.TutorialRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.net.URI;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/tutorials/v1")
@@ -73,10 +70,11 @@ public class TutorialController {
     public List<NameAndDescriptionTuto> getTutosByNameAndDescription() {
         return tutorialRepository.findByOrderByNameAsc();
     }
+
     @GetMapping("/tutos-by-name-and-description-with-map")
     public Map<String, String> getTutosByNameAndDescriptioWithMap() {
         List<NameAndDescriptionTuto> tutos = tutorialRepository.findByOrderByNameAsc();
-        Map<String,String> tutosNameAndShortDescription = new HashMap<>();
+        Map<String, String> tutosNameAndShortDescription = new HashMap<>();
         tutos.forEach(tuto -> tutosNameAndShortDescription.put(tuto.getName(), tuto.getShortDescription()));
         return tutosNameAndShortDescription;
     }
@@ -95,4 +93,29 @@ public class TutorialController {
     List<TutoAggregate> aggregateNamesAndShortDescriptionByCategory() {
         return tutorialRepository.groupByCategoryAggregateNamesAndShortDescription();
     }
+
+    @PostMapping("/add-tuto")
+    public ResponseEntity<Tutorial> saveTuto(@RequestBody Tutorial tutorialToSaved) {
+        Tutorial tutorialSaved = new Tutorial();
+        tutorialSaved.setCategory(tutorialToSaved.getCategory());
+        tutorialSaved.setName(tutorialToSaved.getName());
+        tutorialSaved.setContent(tutorialToSaved.getContent());
+        tutorialSaved.setShortDescription(tutorialToSaved.getShortDescription());
+        URI location =
+                ServletUriComponentsBuilder
+                        .fromCurrentServletMapping()
+                        .path("/{id}")
+                        .build()
+                        .expand(tutorialSaved.getId()).toUri();
+
+        return ResponseEntity.created(location).body(tutorialRepository.insert(tutorialSaved));
+    }
+
+    @PostMapping("/add-tutos")
+    public ResponseEntity<List<Tutorial>> saveTuto(@RequestBody List<Tutorial> tutorials) {
+        List<Tutorial> tutorialListSaved = new ArrayList<>(tutorials);
+        List<Tutorial> tutorialList = tutorialRepository.insert(tutorialListSaved);
+        return ResponseEntity.ok(tutorialList);
+    }
+
 }

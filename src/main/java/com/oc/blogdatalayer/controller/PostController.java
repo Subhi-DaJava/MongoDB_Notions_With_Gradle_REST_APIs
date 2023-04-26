@@ -9,15 +9,10 @@ import com.oc.blogdatalayer.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.*;
 
 @RestController
 @RequestMapping("/api/posts/v1")
@@ -82,6 +77,7 @@ public class PostController {
         posts.forEach(post -> postsByIdAndName.put(post.getId(), post.getName()));
         return postsByIdAndName;
     }
+
     @GetMapping("/retrieve-all-names-by-aggregation")
     List<String> retrieveAllNames() {
         return postRepository.findAllNames();
@@ -90,5 +86,22 @@ public class PostController {
     @GetMapping("/group-posts-by-date")
     List<PostAggregate> groupPostsByDate() {
         return postRepository.groupPostsByDate();
+    }
+
+    @PostMapping("/add-post")
+    public Post savePost(@RequestBody Post postToSaved) {
+        Post newPost = new Post();
+        newPost.setName(postToSaved.getName());
+        newPost.setContent(postToSaved.getContent());
+        newPost.setDate(LocalDateTime.now());
+        logger.info("NewPost has been successfully saved in DB!");
+        return postRepository.insert(newPost);
+    }
+
+    @PostMapping("/add-posts")
+    public List<Post> savePosts(@RequestBody List<Post> posts) {
+        List<Post> postListSaved = new ArrayList<>(posts);
+        postListSaved.forEach(post -> post.setDate(LocalDateTime.now()));
+        return postRepository.insert(postListSaved);
     }
 }
