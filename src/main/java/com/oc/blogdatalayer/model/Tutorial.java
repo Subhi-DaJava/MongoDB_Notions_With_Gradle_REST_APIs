@@ -13,6 +13,15 @@ public class Tutorial {
     private String shortDescription;
     private String content;
     private String category;
+    private Tag tag;
+
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
+    }
 
     public String getId() {
         return id;
@@ -57,10 +66,12 @@ public class Tutorial {
     @Override
     public String toString() {
         return "Tutorial{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", shortDescription='" + shortDescription + '\'' +
                 ", content='" + content + '\'' +
                 ", category='" + category + '\'' +
+                ", tag=" + tag +
                 '}';
     }
 }

@@ -94,6 +94,7 @@ public class PostController {
         newPost.setName(postToSaved.getName());
         newPost.setContent(postToSaved.getContent());
         newPost.setDate(LocalDateTime.now());
+        newPost.setTag(postToSaved.getTag());
         logger.info("NewPost has been successfully saved in DB!");
         return postRepository.insert(newPost);
     }

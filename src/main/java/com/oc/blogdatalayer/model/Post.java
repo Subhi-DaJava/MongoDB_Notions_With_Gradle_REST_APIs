@@ -20,6 +20,15 @@ public class Post {
     private String name;
     private String content;
     private LocalDateTime date;
+    private Tag tag;
+
+    public Tag getTag() {
+        return tag;
+    }
+
+    public void setTag(Tag tag) {
+        this.tag = tag;
+    }
 
     public String getId() {
         return id;
@@ -56,9 +65,11 @@ public class Post {
     @Override
     public String toString() {
         return "Post{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", content='" + content + '\'' +
                 ", date=" + date +
+                ", tag=" + tag +
                 '}';
     }
 }

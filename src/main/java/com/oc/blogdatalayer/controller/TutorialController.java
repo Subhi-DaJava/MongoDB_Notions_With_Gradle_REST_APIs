@@ -101,6 +101,7 @@ public class TutorialController {
         tutorialSaved.setName(tutorialToSaved.getName());
         tutorialSaved.setContent(tutorialToSaved.getContent());
         tutorialSaved.setShortDescription(tutorialToSaved.getShortDescription());
+        tutorialSaved.setTag(tutorialToSaved.getTag());
         URI location =
                 ServletUriComponentsBuilder
                         .fromCurrentServletMapping()
