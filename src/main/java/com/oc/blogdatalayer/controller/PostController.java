@@ -9,7 +9,6 @@ import com.oc.blogdatalayer.model.PostAggregate;
 import com.oc.blogdatalayer.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -131,7 +130,32 @@ public class PostController {
             existingPost.get().getComments().add(newComment);
             return ResponseEntity.ok(postRepository.save(existingPost.get()));
         } else {
-            throw new PostNotFoundException("Post not found with this name:{%s}".formatted(name));
+            throw new PostNotFoundException("Post not found with this name:{%s} in DB!".formatted(name));
         }
     }
+
+    @DeleteMapping("/delete-by-name/{name}")
+    void deleteByName(@PathVariable String name) {
+        Optional<Post> existingPost = Optional.ofNullable(postRepository.findByName(name));
+
+        if (existingPost.isPresent()) {
+            postRepository.deleteByName(name);
+        } else {
+            logger.info("Post not found with this name:{%s} id DB!".formatted(name));
+            throw new PostNotFoundException("Post not found with this name:{%s} id DB!".formatted(name));
+        }
+    }
+    @DeleteMapping("/delete-by-id/{id}")
+    void deleteById(@PathVariable String id) {
+        Optional<Post> existingPost = postRepository.findById(id);
+
+        if (existingPost.isPresent()) {
+
+            postRepository.deleteById(id);
+        } else {
+            logger.info("Post not found with this name:{%s} id DB!".formatted(id));
+            throw new PostNotFoundException("Post not found with this name:{%s} id DB!".formatted(id));
+        }
+    }
+
 }

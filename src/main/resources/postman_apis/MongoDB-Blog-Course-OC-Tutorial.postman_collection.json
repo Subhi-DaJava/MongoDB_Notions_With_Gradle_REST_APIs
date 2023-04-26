@@ -1,0 +1,440 @@
+{
+	"info": {
+		"_postman_id": "d2562756-789d-474c-bee6-2b2d387e42a1",
+		"name": "MongoDB-Blog-Course-OC-Tutorial",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20073289"
+	},
+	"item": [
+		{
+			"name": "getContentByTutorialId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/content/6192c22d783f4a2a0a7d9bf3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"content",
+						"6192c22d783f4a2a0a7d9bf3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPostByTutorialId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/6192c22d783f4a2a0a7d9bf3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"6192c22d783f4a2a0a7d9bf3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllTutorials",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTutorialByTutoName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/tutorial-by-name/How to use MongoRepository",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"tutorial-by-name",
+						"How to use MongoRepository"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getTutoriaslByShortDescContainingWithGivenWord",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/tutos-by-short-desc-contain/tutorial",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"tutos-by-short-desc-contain",
+						"tutorial"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNameAndShortDescrition",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/tutos-by-name-and-description",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"tutos-by-name-and-description"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getNameAndShortDescritionWithMap",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/tutos-by-name-and-description-with-map",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"tutos-by-name-and-description-with-map"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getByIdAndNameByOrderCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/tutos-by-id-and-name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"tutos-by-id-and-name"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCategoriesByAggregation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/categories-by-aggregation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"categories-by-aggregation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aggregateNamesAndShortDescriptionsByCategory",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/aggregate-names-and-short-description-by-category",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"aggregate-names-and-short-description-by-category"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveNewTutorial",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"How to use Git, control version\",\r\n    \"shortDescription\": \"This tuto explains the key usages of Git !\",\r\n    \"content\": \"It is very important to know and use the Git for our every project !\",\r\n    \"category\": \"Git\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/add-tuto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"add-tuto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveNewTutorials",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"name\": \"How to use GitHub, control version remote\",\r\n    \"shortDescription\": \"This tuto explains the key usages of GitHub !\",\r\n    \"content\": \"It is very important to know and use the GitHub for our every project !\",\r\n    \"category\": \"GitHub\"\r\n    },\r\n    {\r\n    \"name\": \"How to use Docker, container\",\r\n    \"shortDescription\": \"This tuto explains the key usages of Docker !\",\r\n    \"content\": \"It is very important to know and use the Docker and Docker-Compose !\",\r\n    \"category\": \"Docker\"\r\n    }\r\n\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/add-tutos",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"add-tutos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveNewTutorialWithTag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"How to use OpenAPI, documentation of REST APIs\",\r\n    \"shortDescription\": \"This tuto explains the key usages of Swagger-OpenAPI !\",\r\n    \"content\": \"It is very important to know and use the OpenAPI for our every REST APIs !\",\r\n    \"category\": \"documentation\",\r\n    \"tag\": {\r\n            \"name\": \"Documentation of REST APIs\",\r\n            \"slug\": \"doc-api\",\r\n            \"description\": \"Swagger-OpenApi is the best tool for the documentation of your REST APIs!\"\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/add-tuto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"add-tuto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateExistingTutorial",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"How to use OpenAPI, documentation of REST APIs\",\r\n    \"shortDescription\": \"This tuto explains the key usages of Swagger-OpenAPI, updated\",\r\n    \"content\": \"It is very important to know and use the OpenAPI for our every REST APIs !\",\r\n    \"category\": \"documentation-updated\",\r\n    \"tag\": {\r\n            \"name\": \"Documentation of REST APIs\",\r\n            \"slug\": \"doc-api-swagger\",\r\n            \"description\": \"Swagger-OpenApi is the best tool for the documentation of your REST APIs!\"\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/update-tuto",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"update-tuto"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateExistingTutorialByName",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"How to use OpenAPI, documentation of REST APIs, Updated\",\r\n    \"shortDescription\": \"This tuto explains the key usages of Swagger-OpenAPI, updated!!\",\r\n    \"content\": \"It is very important to know and use the OpenAPI for our every REST APIs !\",\r\n    \"category\": \"documentation-updated\",\r\n    \"tag\": {\r\n            \"name\": \"Documentation of REST APIs\",\r\n            \"slug\": \"doc-api-swagger\",\r\n            \"description\": \"Swagger-OpenApi is the best tool for the documentation of your REST APIs, updated !!!\"\r\n        }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/update-by-name?name=How to use OpenAPI, documentation of REST APIs",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"update-by-name"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "How to use OpenAPI, documentation of REST APIs"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTutorialByPostId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/delete-by-id/6192c22d783f4a2a0a7d9bf3",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"delete-by-id",
+						"6192c22d783f4a2a0a7d9bf3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTutorialByName",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/tutorials/v1/delete-by-name/How to write DerivedQueries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"tutorials",
+						"v1",
+						"delete-by-name",
+						"How to write DerivedQueries"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

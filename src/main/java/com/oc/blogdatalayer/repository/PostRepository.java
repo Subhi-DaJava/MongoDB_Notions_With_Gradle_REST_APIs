@@ -73,4 +73,6 @@ public interface PostRepository extends MongoRepository<Post, String> {
      */
     @Aggregation(" { '$group': {'_id' : '$date', 'names' : { '$addToSet': '$name'} } }")
     List<PostAggregate> groupPostsByDate();
+
+    void deleteByName(String name);
 }

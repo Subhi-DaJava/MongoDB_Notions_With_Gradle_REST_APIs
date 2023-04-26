@@ -40,4 +40,6 @@ public interface TutorialRepository extends MongoRepository<Tutorial, String> {
      */
     @Aggregation(" { '$group': { '_id': '$category', 'tutorials' : {'$addToSet': {'name': '$name', 'shortDescription': '$shortDescription'} } } }")
     List<TutoAggregate> groupByCategoryAggregateNamesAndShortDescription();
+
+    void deleteByName(String name);
 }

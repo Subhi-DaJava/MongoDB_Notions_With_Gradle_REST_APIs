@@ -1,0 +1,447 @@
+{
+	"info": {
+		"_postman_id": "b0cd988b-1566-4208-be5a-d8373c1a1601",
+		"name": "MongoDB-Blog-Course-OC-Post",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20073289"
+	},
+	"item": [
+		{
+			"name": "getContentByPostId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/content/6177a31824f1d205e0b0692d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"content",
+						"6177a31824f1d205e0b0692d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPostByPostId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/6177a31824f1d205e0b0692d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"6177a31824f1d205e0b0692d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllPosts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPostsByPostName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/posts-by-name/Welcome!",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"posts-by-name",
+						"Welcome!"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPostByPostName",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/post-by-name/Welcome!",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"post-by-name",
+						"Welcome!"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findByContentContaining",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/contain/Java",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"contain",
+						"Java"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllPostNamesByOrderByDateDesc",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/posts-by-name-with-date-desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"posts-by-name-with-date-desc"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "findAllPostNamesByOrderByDateDescByNativeQueries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/posts-by-id-and-name-orderby-date",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"posts-by-id-and-name-orderby-date"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllNamesByAggregation",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/retrieve-all-names-by-aggregation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"retrieve-all-names-by-aggregation"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPostsByNameGroupByDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/group-posts-by-date",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"group-posts-by-date"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveNewPost",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Nice Day\",\r\n    \"content\": \"I love Java, I'm almost there for my diplome!!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/add-post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"add-post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveNewPosts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[\r\n    {\r\n    \"name\": \"Welcome on board!\",\r\n    \"content\": \"My blog is really useful !\"\r\n    },\r\n    {\r\n    \"name\": \"See you soon\",\r\n    \"content\": \"I will be back soon - going on holidays!\"\r\n    }\r\n]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/add-posts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"add-posts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "saveNewPostWithTag",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Spring Framework Presentation\",\r\n    \"content\": \"Let me introduce you to the awesome Spring Framework!\",\r\n    \"tag\": {\r\n        \"name\": \"Spring Framework\",\r\n        \"slug\": \"spring-framework\",\r\n        \"description\": \"Spring is the most popular Java Framework in the world !\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/add-post",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"add-post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateExistingPostByName",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Spring Framework Demonstration\",\r\n    \"content\": \"Let me introduce you to the awesome Spring Framework with MongoDB Database!\",\r\n    \"tag\": {\r\n        \"name\": \"Spring Framework updated\",\r\n        \"slug\": \"spring-framework updated\",\r\n        \"description\": \"Spring is the most popular Java Framework in the world updated!\"\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/update-post?name=Spring Framework Presentation",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"update-post"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Spring Framework Presentation"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateExistingPostFindByNameByAddingComment",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"pseudo\": \"Java Dev\",\r\n    \"content\": \"Hi, I'm learning MongoDB Database!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/add-comment?name=Spring Framework Demonstration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"add-comment"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "Spring Framework Demonstration"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletePostByPostId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/delete-by-id/6177a31824f1d205e0b0692d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"delete-by-id",
+						"6177a31824f1d205e0b0692d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deletePostByName",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/posts/v1/delete-by-name/See you soon",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"posts",
+						"v1",
+						"delete-by-name",
+						"See you soon"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

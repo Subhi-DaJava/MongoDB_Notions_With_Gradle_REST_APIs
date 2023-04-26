@@ -149,4 +149,23 @@ public class TutorialController {
         }
     }
 
+    @DeleteMapping("/delete-by-id/{id}")
+    void deleteById(@PathVariable String id) {
+        Optional<Tutorial> existingTuto = tutorialRepository.findById(id);
+        if(existingTuto.isPresent()) {
+            tutorialRepository.deleteById(id);
+        } else {
+            throw new TutorialNotFoundException("Tutrorial not found with this id:{%s} id DB!".formatted(id));
+        }
+    }
+
+    @DeleteMapping("/delete-by-name/{name}")
+    void deleteByName(@PathVariable String name) {
+        Optional<Tutorial> existingTuto = Optional.ofNullable(tutorialRepository.findByName(name));
+        if(existingTuto.isPresent()) {
+            tutorialRepository.deleteByName(name);
+        } else {
+            throw new TutorialNotFoundException("Tutorial not found with this id:{%s} id DB!".formatted(name));
+        }
+    }
 }
