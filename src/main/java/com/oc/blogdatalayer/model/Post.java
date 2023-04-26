@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This annotation provided by Spring Data MongoDB is used to indicate that the class represents a document.
@@ -21,6 +23,15 @@ public class Post {
     private String content;
     private LocalDateTime date;
     private Tag tag;
+    private List<Comment> comments = new ArrayList<>();
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     public Tag getTag() {
         return tag;

@@ -2,12 +2,14 @@ package com.oc.blogdatalayer.controller;
 
 import com.oc.blogdatalayer.BlogDataLayerApplication;
 import com.oc.blogdatalayer.exception.PostNotFoundException;
+import com.oc.blogdatalayer.model.Comment;
 import com.oc.blogdatalayer.model.LightPost;
 import com.oc.blogdatalayer.model.Post;
 import com.oc.blogdatalayer.model.PostAggregate;
 import com.oc.blogdatalayer.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -110,7 +112,7 @@ public class PostController {
     @PutMapping("/update-post")
     ResponseEntity<Post> updateExistingPost(@RequestParam String name, @RequestBody Post postToUpdate) {
         Optional<Post> postExisting = Optional.ofNullable(postRepository.findByName(name));
-        if(postExisting.isPresent()) {
+        if (postExisting.isPresent()) {
             postExisting.get().setName(postToUpdate.getName());
             postExisting.get().setTag(postToUpdate.getTag());
             postExisting.get().setContent(postToUpdate.getContent());
@@ -118,6 +120,18 @@ public class PostController {
             return ResponseEntity.ok(postRepository.save(postExisting.get()));
         } else {
             throw new PostNotFoundException("Any Post found with the name:{%s}".formatted(name));
+        }
+    }
+
+    @PutMapping("/add-comment")
+    ResponseEntity<Post> addComment(@RequestBody Comment newComment, @RequestParam String name) {
+        Optional<Post> existingPost = Optional.ofNullable(postRepository.findByName(name));
+
+        if (existingPost.isPresent()) {
+            existingPost.get().getComments().add(newComment);
+            return ResponseEntity.ok(postRepository.save(existingPost.get()));
+        } else {
+            throw new PostNotFoundException("Post not found with this name:{%s}".formatted(name));
         }
     }
 }
