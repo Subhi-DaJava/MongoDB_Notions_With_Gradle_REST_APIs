@@ -119,4 +119,34 @@ public class TutorialController {
         return ResponseEntity.ok(tutorialList);
     }
 
+    @PutMapping("/update-tuto")
+    public ResponseEntity<Tutorial> updateTuto(@RequestBody Tutorial tutorialToUpdate) {
+        Optional<Tutorial> tutorialUpdated = Optional.ofNullable(tutorialRepository.findByName(tutorialToUpdate.getName()));
+        if (tutorialUpdated.isPresent()) {
+            tutorialUpdated.get().setName(tutorialToUpdate.getName());
+            tutorialUpdated.get().setCategory(tutorialToUpdate.getCategory());
+            tutorialUpdated.get().setTag(tutorialToUpdate.getTag());
+            tutorialUpdated.get().setContent(tutorialToUpdate.getContent());
+            tutorialUpdated.get().setShortDescription(tutorialToUpdate.getShortDescription());
+            return ResponseEntity.ok(tutorialRepository.save(tutorialUpdated.get()));
+        } else {
+            throw new TutorialNotFoundException("This Tutorial with name:{%s} doesn't exist in DB".formatted(tutorialToUpdate.getName()));
+        }
+    }
+
+    @PutMapping("/update-by-name")
+    public ResponseEntity<Tutorial> updateTutoByName(@RequestParam String name, @RequestBody Tutorial tutorialToUpdate) {
+        Optional<Tutorial> tutorialUpdated = Optional.ofNullable(tutorialRepository.findByName(name));
+        if (tutorialUpdated.isPresent()) {
+            tutorialUpdated.get().setName(tutorialToUpdate.getName());
+            tutorialUpdated.get().setCategory(tutorialToUpdate.getCategory());
+            tutorialUpdated.get().setTag(tutorialToUpdate.getTag());
+            tutorialUpdated.get().setContent(tutorialToUpdate.getContent());
+            tutorialUpdated.get().setShortDescription(tutorialToUpdate.getShortDescription());
+            return ResponseEntity.ok(tutorialRepository.save(tutorialUpdated.get()));
+        } else {
+            throw new TutorialNotFoundException("This Tutorial with name:{%s} doesn't exist in DB".formatted(tutorialToUpdate.getName()));
+        }
+    }
+
 }

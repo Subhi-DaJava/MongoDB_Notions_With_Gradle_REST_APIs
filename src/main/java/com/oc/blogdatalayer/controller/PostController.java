@@ -9,6 +9,7 @@ import com.oc.blogdatalayer.repository.PostRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -104,5 +105,19 @@ public class PostController {
         List<Post> postListSaved = new ArrayList<>(posts);
         postListSaved.forEach(post -> post.setDate(LocalDateTime.now()));
         return postRepository.insert(postListSaved);
+    }
+
+    @PutMapping("/update-post")
+    ResponseEntity<Post> updateExistingPost(@RequestParam String name, @RequestBody Post postToUpdate) {
+        Optional<Post> postExisting = Optional.ofNullable(postRepository.findByName(name));
+        if(postExisting.isPresent()) {
+            postExisting.get().setName(postToUpdate.getName());
+            postExisting.get().setTag(postToUpdate.getTag());
+            postExisting.get().setContent(postToUpdate.getContent());
+
+            return ResponseEntity.ok(postRepository.save(postExisting.get()));
+        } else {
+            throw new PostNotFoundException("Any Post found with the name:{%s}".formatted(name));
+        }
     }
 }
